@@ -1,12 +1,113 @@
-# React + Vite
+```md
+# MovieFinder 🎬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**MovieFinder** is a sleek and simple movie discovery app powered by the TMDB API.  
+Search for your favorite movies without the hassle — smooth UI, real-time search, and clean design.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- 🔎 Real-time movie search with debounce
+- 🎨 Modern responsive UI with TailwindCSS
+- 📡 TMDB API integration
+- ⚡ Loading indicators
+- 🌙 Dark theme by default
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Tech Stack
+
+- React
+- TailwindCSS
+- Vite
+- TMDB API
+- usehooks.dev (`useDebounce`)
+
+---
+
+## Getting Started
+
+1. Clone the repository:
+
+```
+
+git clone [https://github.com/yourusername/moviefinder.git](https://github.com/yourusername/moviefinder.git)
+cd moviefinder
+
+```
+
+2. Install dependencies:
+
+```
+
+npm install
+
+```
+
+3. Create a `.env` file in the root directory:
+
+```
+
+VITE\_TMDB\_API\_KEY=your\_tmdb\_api\_key\_here
+
+```
+
+4. Start the development server:
+
+```
+
+npm run dev
+
+```
+
+5. Open your browser at [http://localhost:5173](http://localhost:5173)
+
+---
+
+## Project Structure
+
+```
+
+moviefinder/
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── Search.jsx
+│   │   ├── MovieCard.jsx
+│   │   └── Spinner.jsx
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── .env
+├── package.json
+└── vite.config.js
+
+```
+
+---
+
+## Future Plans
+
+- Actor search
+- Similar movie recommendations
+- Genre filters
+- Favorites/watchlist system
+- Animations with Framer Motion
+
+---
+
+## License
+
+MIT License  
+Free to use, modify, and share. Just don’t pretend you’re Tony Stark.
+
+---
+
+## Author
+
+Made by [@yassineghediri](https://github.com/yassineghediri)  
+Software Engineer • CS student • Movie enjoyer 🍿
+```
+
+
