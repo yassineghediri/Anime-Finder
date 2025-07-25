@@ -1,113 +1,109 @@
-```md
-# MovieFinder 🎬
+````md
+# Anime Finder App
 
-**MovieFinder** is a sleek and simple movie discovery app powered by the TMDB API.  
-Search for your favorite movies without the hassle — smooth UI, real-time search, and clean design.
+A sleek React app to find trending anime or search for your favorite anime titles — no hassle, just pure anime vibes.
 
 ---
 
 ## Features
 
-- 🔎 Real-time movie search with debounce
-- 🎨 Modern responsive UI with TailwindCSS
-- 📡 TMDB API integration
-- ⚡ Loading indicators
-- 🌙 Dark theme by default
+- Search anime by name with instant results (debounced to reduce unnecessary API calls)
+- View trending top anime when no search term is provided
+- Loading spinner while fetching data
+- Handles errors gracefully with user-friendly messages
+- Responsive UI with a clean design
+- Uses [Jikan API (v4)](https://docs.api.jikan.moe/) — an unofficial MyAnimeList API
 
 ---
 
 ## Tech Stack
 
-- React
-- TailwindCSS
-- Vite
-- TMDB API
-- usehooks.dev (`useDebounce`)
+- React (Functional Components + Hooks)
+- `useDebounce` from `@uidotdev/usehooks` for efficient search
+- Fetch API for backend requests
+- Tailwind CSS (assumed from class names)
+- Jikan API for anime data
 
 ---
 
-## Getting Started
+## Setup & Run Locally
 
-1. Clone the repository:
+1. **Clone the repo**
 
-```
+   ```bash
+   git clone https://github.com/yassineghediri/anime-finder-app.git
+   cd anime-finder-app
+````
 
-git clone [https://github.com/yourusername/moviefinder.git](https://github.com/yourusername/moviefinder.git)
-cd moviefinder
+2. **Install dependencies**
 
-```
+   ```bash
+   npm install
+   ```
 
-2. Install dependencies:
+3. **Run the app**
 
-```
+   ```bash
+   npm run dev   
+   ```
 
-npm install
+4. **Open your browser** 
 
-```
+   Go to `http://localhost:5173`. Congratulations! 
 
-3. Create a `.env` file in the root directory:
 
-```
+## How it Works
 
-VITE\_TMDB\_API\_KEY=your\_tmdb\_api\_key\_here
+* **Search input** updates the `searchTerm` state.
+* The input is debounced by 300ms using `useDebounce` to avoid flooding the API with requests on every keystroke.
+* When `debouncedSearchTerm` changes, the app fetches data from the Jikan API:
 
-```
-
-4. Start the development server:
-
-```
-
-npm run dev
-
-```
-
-5. Open your browser at [http://localhost:5173](http://localhost:5173)
+  * If there is a search term, it fetches anime matching the query.
+  * If empty, it fetches the top trending anime.
+* Results are displayed with `AnimeCard` components.
+* Displays a spinner while loading, and shows error messages if the fetch fails.
 
 ---
 
-## Project Structure
+## Folder Structure (Relevant)
 
 ```
-
-moviefinder/
-├── public/
-├── src/
-│   ├── components/
-│   │   ├── Search.jsx
-│   │   ├── MovieCard.jsx
-│   │   └── Spinner.jsx
-│   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
-├── .env
-├── package.json
-└── vite.config.js
-
+src/
+ ├─ components/
+ │   ├─ Search.jsx
+ │   ├─ Spinner.jsx
+ │   └─ AnimeCard.jsx
+ ├─ App.jsx
+ └─ main.jsx
 ```
 
 ---
 
-## Future Plans
+## To-Do / Improvements
 
-- Actor search
-- Similar movie recommendations
-- Genre filters
-- Favorites/watchlist system
-- Animations with Framer Motion
+* Add pagination to load more results
+* Add detailed anime pages with more info
+* Improve error handling (e.g., retry logic)
+* Add user favorites or watchlist
+* Dark mode toggle
+* Unit & integration tests
+
+---
+
+## Credits
+
+* API: [Jikan API v4](https://docs.api.jikan.moe/)
+* React hooks: [@uidotdev/usehooks](https://www.npmjs.com/package/@uidotdev/usehooks)
 
 ---
 
 ## License
 
-MIT License  
-Free to use, modify, and share. Just don’t pretend you’re Tony Stark.
+MIT License © \[Yassine Ghediri]
 
 ---
 
-## Author
+Built with 💜 and anime passion.
 
-Made by [@yassineghediri](https://github.com/yassineghediri)  
-Software Engineer • CS student • Movie enjoyer 🍿
 ```
-
-
+```

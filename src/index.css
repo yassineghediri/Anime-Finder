@@ -93,7 +93,7 @@
         }
     }
 
-    .all-movies {
+    .all-animes {
         @apply space-y-9;
 
         & ul {
@@ -101,12 +101,10 @@
         }
     }
 
-    .movie-card {
-        @apply bg-dark-100 p-5 rounded-2xl shadow-inner shadow-light-100/10;
+    .anime-card {
+        @apply bg-dark-100 p-5 rounded-2xl shadow-inner shadow-light-100/10 transition-transform hover:scale-[1.02];
 
-        & img {
-            @apply rounded-lg h-auto w-full;
-        }
+
 
         & h3 {
             @apply text-white font-bold text-base line-clamp-1;
@@ -132,12 +130,17 @@
             @apply text-sm text-gray-100;
         }
 
-        & .content .lang {
+        & .type,
+        & .year {
             @apply capitalize text-gray-100 font-medium text-base;
         }
 
-        & .content .year {
-            @apply text-gray-100 font-medium text-base;
+        & .extra {
+            @apply mt-3 text-sm text-light-200 space-y-1;
+        }
+
+        & .extra p strong {
+            @apply text-white;
         }
     }
 }

@@ -1,18 +1,19 @@
 import { useState, useEffect } from 'react'
 import Search from './components/Search'
 import Spinner from './components/Spinner'
-import MovieCard from './components/MovieCard';
+import AnimeCard from './components/AnimeCard';
 import { useDebounce } from "@uidotdev/usehooks";
-const API_BASE_URI = 'https://api.themoviedb.org/3';
+const API_BASE_URI = 'https://api.jikan.moe/v4/';
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 const API_OPTIONS = {
     method: 'GET',
     headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${API_KEY}`
+        accept: 'application/json'
+        // delete Authorization line
     }
-}
+};
+
 
 
 
@@ -20,22 +21,22 @@ const API_OPTIONS = {
 export default function App() {
     const [searchTerm, setSearchTerm] = useState('');
     const [errorMessage, setErrorMessage] = useState(null);
-    const [movies, setMovies] = useState([]);
+    const [animes, setanimes] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
-    const fetchMovies = async (query = '') => {
+    const fetchAnimes = async (query = '') => {
         setIsLoading(true);
         setErrorMessage(null);
 
         try {
-            
-            const endpoint  = query 
-            ?
-                `${API_BASE_URI}/search/movie?query=${encodeURIComponent(query)}`
-            :
-                `${API_BASE_URI}/discover/movie?sort_by=popularity.desc&include_adult=false`;
+
+            const endpoint = query
+                ?
+                `${API_BASE_URI}anime?q=${encodeURIComponent(query)}&limit=20`
+                :
+                `${API_BASE_URI}top/anime?limit=20`;
 
             const response = await fetch(endpoint, API_OPTIONS);
 
@@ -46,22 +47,22 @@ export default function App() {
             const data = await response.json();
 
             if (data.Response === 'False') {
-                setErrorMessage(data.Error || 'An error occurred while fetching movies.');
-                setMovies([]);
+                setErrorMessage(data.Error || 'An error occurred while fetching animes.');
+                setanimes([]);
             } else {
-                setMovies(data.results || []); 
+                setanimes(data.data || []);
             }
 
         } catch (error) {
-            console.error('Error fetching movies:', error);
-            setErrorMessage('Failed to fetch movies. Please try again later.');
+            console.error('Error fetching animes:', error);
+            setErrorMessage('Failed to fetch animes. Please try again later.');
         } finally {
             setIsLoading(false);
         }
     }
 
     useEffect(() => {
-        fetchMovies(debouncedSearchTerm);
+        fetchAnimes(debouncedSearchTerm);
     }, [debouncedSearchTerm])
 
 
@@ -70,24 +71,29 @@ export default function App() {
             <div className="pattern" />
             <div className="wrapper">
                 <header>
-                    <img src="./hero.png" alt="Hero Banner" />
-                    <h1>Find <span className='text-gradient'>Movies</span> You'll Enjoy Without The Hassle</h1>
+                    <h1>Find <span className='text-gradient'>Anime</span> You'll Enjoy Without The Hassle</h1>
                     <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
                 </header>
-                <section className='all-movies'>
-                    <h2 className="mt-[40px]">All Movies</h2>
+                <section className='all-animes'>
+                    <h2 className="mt-[40px]">
+                        {debouncedSearchTerm ? `Results for "${debouncedSearchTerm}"` : "Trending Anime"}
+                    </h2>
                     {isLoading ? (
                         <Spinner />
                     ) : errorMessage ? (
                         <p className="text-red-500">{errorMessage}</p>
                     ) : (
                         <ul>
-                            {movies.map((movie) => (
-                                <MovieCard key={movie.id} movie={movie} />
+                            {animes.map((anime) => (
+                                <AnimeCard key={anime.mal_id} anime={anime} />
                             ))}
                         </ul>
                     )}
+                    {animes.length === 0 && !isLoading && !errorMessage &&
+                        <p className="text-gray-400">No anime found. Try a different search term.</p>
+                    }
+
                 </section>
             </div>
         </main>
