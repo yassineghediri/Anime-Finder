@@ -33,13 +33,13 @@ A sleek React app to find trending anime or search for your favorite anime title
    ```bash
    git clone https://github.com/yassineghediri/anime-finder-app.git
    cd anime-finder-app
-```
 
 2. **Install dependencies**
 
    ```bash
    npm install
    ```
+
 
 3. **Run the app**
 
