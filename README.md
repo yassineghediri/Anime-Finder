@@ -1,4 +1,4 @@
-````md
+
 # Anime Finder App
 
 A sleek React app to find trending anime or search for your favorite anime titles — no hassle, just pure anime vibes.
@@ -33,7 +33,7 @@ A sleek React app to find trending anime or search for your favorite anime title
    ```bash
    git clone https://github.com/yassineghediri/anime-finder-app.git
    cd anime-finder-app
-````
+```
 
 2. **Install dependencies**
 
@@ -105,5 +105,5 @@ MIT License © \[Yassine Ghediri]
 
 Built with 💜 and anime passion.
 
-```
-```
+
+
